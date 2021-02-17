@@ -11,9 +11,9 @@ class ProductForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         categries = Category.objects.all()
-        friendly_name = [(c.id, c.get_friendly_name()) for c in categries]
+        friendly_names = [(c.id, c.get_friendly_name()) for c in categries]
 
-        self.fields['category'].choices = friendly_name
+        self.fields['category'].choices = friendly_names
 
         for field_name, field in self.fields.items():
-            field.widget.attr['class'] = 'border-black rounded-0'
+            field.widget.attrs['class'] = 'border-black rounded-0'
